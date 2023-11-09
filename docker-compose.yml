@@ -1,23 +1,26 @@
 version: "3.8"
 services:
-  voyages-bdd:
-    build: ./mysql-bdd
-    image: v-bdd
-    container_name: mysql-bdd
+  articles-bdd:
+    build: ./articles-bd
+    image: articles-b
+    container_name: articles-bdd
     networks:
     - v-network
     volumes:
     - v-bdd-data:/var/lib/mysql
-  voyages-app:
-    build: ./projet-java-web-sql
-    image: v-app
-    container_name: voyages-app
-    depends_on:
-    - voyages-bdd
     ports:
-    - "9000:8080"
-    networks:
-    - v-network
+    - "9020:3306"
+ 
+  # articles-back:
+  #   build: ./articles-back
+  #   image: v-app
+  #   container_name: articles-back
+  #   depends_on:
+  #   - articles-app
+  #   ports:
+  #   - "9030:8080"
+  #   networks:
+  #   - v-network
 networks:
   v-network:
 volumes:
